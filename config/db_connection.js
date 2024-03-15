@@ -9,7 +9,7 @@ const mongoDbUrl = {
 // }
 
 Mongoose
-.connect(mongoDbUrl.DB_HOST, { useNewUrlParser: true,  useUnifiedTopology: true  })
+.connect(mongoDbUrl.DB_HOST)
 .then(() => {
     console.log('successfully connected mongo db atlas')
 })
