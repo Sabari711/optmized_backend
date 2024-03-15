@@ -5,9 +5,12 @@ const path = require("path");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+
 require('./config/db_connection')
+require('./model/usersSchema')
 const app = express();
 
+const userRoutes = require('./routes/userRoutes')
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -30,9 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Assign routes
-app.use("/test",async(req,res)=>{
-    res.status(200).send({message : "Working"})
-});
+app.use("/",userRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
